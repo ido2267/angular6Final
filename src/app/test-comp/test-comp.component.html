@@ -1,0 +1,13 @@
+<div *ngIf = "usersArr.length > 0">
+<table border="1">
+  <th>User name</th> <th  > Email:</th>  <th  > City:</th>
+  <tr *ngFor =  " let userData of usersArr" >
+  
+    <td>{{userData.UserObjName}}  </td>
+  <td>{{userdata.UserObjEmail}}</td>
+  <td>{{userdata.UserObjCity}</td>
+
+  </tr>
+  </table>
+
+</div>
