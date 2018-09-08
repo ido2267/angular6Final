@@ -16,23 +16,38 @@ export class TestCompComponent implements OnInit {
   usersArr:UsersObj[]=[];
   tasksArr:TasksObj[]=[];
   postArr:PostsObj[]=[];
-
+  showUsers:boolean=false;
+  showTasks:boolean=false;
+  showPosts:boolean=false;
 
   constructor(private serviceInst:GetDataService) { }
+  getUsers(){
+    this.showUsers = !this.showUsers;
+    this.showPosts = false;
+    this.showTasks = false
+     this.usersArr = this.serviceInst.usersArray;
+  //   console.log('name  ' + this.usersArr[0].UserObjName + ' city ' +  this.usersArr[0].UserObjCity);
+  }
+
+  getPosts(){
+    this.showPosts = !this.showPosts;
+    this.showUsers = false;
+     this.showTasks = false
+     this.postArr = this.serviceInst.postsArray;
+ 
+   }
+
+   
+  getTasks(){
+    this.showTasks = ! this.showTasks;
+    this.showUsers = false;
+    this.showPosts = false;
+      this.tasksArr = this.serviceInst.tasksArray;
+   }
+
 
   ngOnInit() { 
-     this.serviceInst.loadUsers().subscribe(response=> this.usersArr = response);
-     console.log( 'users ' + this.usersArr.length); // => users 0 
-
-      this.serviceInst.loasPosts();
-      this.postArr = this.serviceInst.postsArray;
-     this.tasksArr =  this.serviceInst.loadTasks();
-
-     // this.tasksArr = this.serviceInst.tasksArray;
-     console.log( 'tasks ' + this.tasksArr.length); // => tasks 0 
-     console.log( 'posts ' + this.postArr.length); // => posts 0 
-
-  //   this.serviceInst.loadTasks();
+     this.serviceInst.loadArrays();
    }
 
 }

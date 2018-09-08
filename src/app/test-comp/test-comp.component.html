@@ -1,13 +1,42 @@
-<div *ngIf = "usersArr.length > 0">
+<nav>
+<input type="button" value="users" #users (click)="getUsers()">
+<input type="button" value="tasks" #users (click)="getTasks()">
+<input type="button" value="posts" #users (click)="getPosts()">
+
+</nav>
+
+<div *ngIf = "showUsers">
 <table border="1">
-  <th>User name</th> <th  > Email:</th>  <th  > City:</th>
+  <th>User name</th> <th> Email:</th>  <th> City:</th>
   <tr *ngFor =  " let userData of usersArr" >
-  
-    <td>{{userData.UserObjName}}  </td>
-  <td>{{userdata.UserObjEmail}}</td>
-  <td>{{userdata.UserObjCity}</td>
-
+     <td> {{userData.UserObjName}} </td>
+    <td> {{userData.UserObjEmail}}  </td>
+    <td> {{userData.UserObjCity}}</td>
   </tr>
-  </table>
-
+</table>
 </div>
+
+
+<div *ngIf = "showTasks">
+  <table border="1">
+    <th>Task Id</th> <th> title:</th>  <th> Completed:</th>
+    <tr *ngFor =  " let taskData of tasksArr" >
+       <td>  {{taskData.taskObjId}} </td>
+       <td>  {{taskData.taskObjTitle}} </td>
+       <td>  {{taskData.taskObjCompleted?'Yes': 'No'}} </td>
+    </tr>
+  </table>
+  </div>
+
+
+  <div *ngIf = "showPosts">
+    <table border="1">
+      <th>Post Id</th> <th> title:</th>  <th> Content:</th>
+      <tr *ngFor =  " let postData of postArr" >
+         <td>  {{postData.postObjId}} </td>
+         <td>  {{postData.postObjTitle}} </td>
+         <td>  {{postData.postObjBody}} </td>
+      </tr>
+    </table>
+    </div>
+ 

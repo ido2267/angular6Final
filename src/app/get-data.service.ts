@@ -25,15 +25,13 @@ export class GetDataService {
   private currTask :TasksObj;
   private currpost :PostsObj;
 
-
   public usersArray :UsersObj[]=[];
   public tasksArray :TasksObj[]=[];
   public postsArray :PostsObj[]=[];
 
   constructor(private serviceHttp:HttpClient) { }
 
-
-  loadUsers():Observable<UsersObj[]>  {
+  loadArrays()  {
 
     // load users array 
     this.serviceHttp.get<any[]>(this.usersUrl).subscribe(response =>
@@ -42,36 +40,28 @@ export class GetDataService {
        {
          this.currUser = new UsersObj(response[i].id, response[i].name, response[i].email,
          response[i].address.city);
+         
+ 
          this.usersArray.push(this.currUser);
+          
          }
       });
-      return of (this.usersArray);
+      
             
-    }
-
-    
-        // load tasks array 
-loadTasks(): TasksObj[]
-{
+       // load posts array 
 this.serviceHttp.get<any[]>(this.postsUrl).subscribe(response =>
 {
 for (var i = 0 ; i < response.length; i++)
-{ this.currpost = new PostsObj(response[i].id,response[i].userId, response[i].title, response[i].completed);
+{ this.currpost = new PostsObj(response[i].id,response[i].userId, response[i].title, response[i].body );
  this.postsArray.push(this.currpost);
   }
 });
-return this.tasksArray;
+       // load tasks array 
 
-}
-         // load posts array 
-
-  loasPosts():void
-  {
-
-      this.serviceHttp.get<any[]>(this.tasksUrl).subscribe(response =>
-        {
+   this.serviceHttp.get<any[]>(this.tasksUrl).subscribe(response =>
+     {
        for (var i = 0 ; i < response.length; i++)
-         { this.currTask = new TasksObj(response[i].id, response[i].userId, response[i].title, response[i].body);
+         { this.currTask = new TasksObj(response[i].id, response[i].userId, response[i].title, response[i].completed);
           this.tasksArray.push(this.currTask);
            }
         });
