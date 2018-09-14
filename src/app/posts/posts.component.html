@@ -1,3 +1,19 @@
-<p>
-  posts works!
-</p>
+
+<form >
+
+User id: <input type="text" #pst pattern="[0-9]"    value="0" (keyup)="getUserId(pst.value)" > 
+<div class = "warning" [hidden]="userExist">There is no such user Id </div>
+
+<div   [hidden]="!userExist">  </div>  <!-- keep the same height-->
+<br>
+<table border="1">
+<th>Post Id</th> <th> title:</th>  <th> User:</th>
+<tr *ngFor =  " let postData of postsForShow | postsForUser:inUserId" > 
+   <td>  {{postData.postId}} </td>
+   <td>  {{postData.postTitle}} </td>
+   <td>  {{postData.postUserName}} </td>
+</table>
+
+
+<input type="button" #return (click)="prev()" value="Previous Page">
+</form>

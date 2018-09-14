@@ -26,7 +26,7 @@ export class UserDataComponent implements OnInit {
 
   prev(){
   //   this.lastPage.navigate(['sec-menu/:users']);
-  this.lastPage.navigate(['child-menu']);
+  this.lastPage.navigate(['main-menu']);
   }
 
   ngOnInit() {
@@ -65,4 +65,7 @@ export class UserDataComponent implements OnInit {
       if (this.userUpdated )
       {alert ("User Updated !");}
     }
+
+
+
   }

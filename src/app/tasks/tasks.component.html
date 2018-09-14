@@ -1,3 +1,24 @@
-<p>
-  tasks works!
-</p>
+     
+     
+     
+     <form #userData="ngForm" >
+
+     <div  class="vertical-radio-buttons">
+     <input  checked="checked" type="radio"  name="rad" (click)="tasksStatus='all'">  All tasks<br>
+     <input type="radio"  name="rad" (click)="tasksStatus='Completed'">  Completed tasks  <br>
+     <input type="radio"  name="rad" (click)="tasksStatus='Uncompleted'">  Uncompeted tasks<br><br><br>
+    </div>
+   <table border="1">
+     <th>Task Id</th> <th> Title:</th>  <th> Completed:</th>
+     <tr *ngFor =  " let taskData of tasksArr | tasksPipe:tasksStatus" >
+        <td *ngIf = "taskData.taskObjCompleted" style="color:green">  {{taskData.taskObjId}} </td>
+        <td *ngIf = "taskData.taskObjCompleted" style="color:green">  {{taskData.taskObjTitle}} </td>
+        <td *ngIf = "taskData.taskObjCompleted" style="color:green">  Yes </td>
+        <td *ngIf = "!taskData.taskObjCompleted" style="color:red">  {{taskData.taskObjId}} </td>
+        <td *ngIf = "!taskData.taskObjCompleted" style="color:red">  {{taskData.taskObjTitle}} </td>
+        <td *ngIf = "!taskData.taskObjCompleted" style="color:red"> No </td>
+     </tr>
+   </table>
+ 
+   <input type="button" #return (click)="prev()" value="Previous Page">
+ </form>

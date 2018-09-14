@@ -132,6 +132,52 @@ getPostsForUser (userId:number):PostsObj[]{
       return this.userUpdated;
     }
 
+    addUser( newUser:UsersObj ):boolean{
+      var userExists:boolean = true;
+      // first let's see if user's details allready exists 
+      userExists =  this.matchUser(newUser,0);
+      if (userExists)
+      {return false;}
+      // next  we should find a free user's Id 
+      this.index = this.usersArray.map(x=> x.UserObjUserId).reduce((y,z)=> {
+        if (z > y)
+        {return z;}
+        else
+        {return y;} });
+       this.index += 1;   
+       newUser.UserObjUserId = this.index;
+       this.usersArray.push(newUser);
+      // In reality we will have to add the data in the database as well:
+// this.serviceHttp.post(this.usersUrl + "/" +  this.index,newUser).subscribe( (data) => console.log(data));
+             
+    }
+  // a function that find existing user with details of new user 
+    matchUser(newUser:UsersObj, userIndex:number):boolean
+    {
+      var userExists:boolean = true;
+      while (userExists)
+      {
+        
+        this.index = this.usersArray.map(x=> x.UserObjName).indexOf(newUser.UserObjName,userIndex)
+        if (this.index >=0 )
+        {
+         if (  this.usersArray[this.index].UserObjEmail == newUser.UserObjEmail &&
+            this.usersArray[this.index].UserObjCity == newUser.UserObjCity)
+            {
+              return userExists;
+            }
+            else 
+            {
+              this.index +=1;
+              this.matchUser(newUser, this.index);
+            }
+          }
+        else {
+          userExists = false;
+        }  
+      }
+      return userExists;
+    }
 
 }
 

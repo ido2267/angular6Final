@@ -1,3 +1,10 @@
-<p>
-  search-user works!
-</p>
+<form #f="ngForm" >
+
+<p > Phrase: <input type="text" name="Phrase" #phrase required (keyup)="getUsers(phrase.value)">  </p>
+<ul  *ngFor="let user of usersList">
+  <li>{{user.UserObjName}}</li> 
+  <li>{{user.UserObjCity}}</li>
+  <li>{{user.UserObjEmail}}</li>
+
+</ul>
+</form>

@@ -11,6 +11,7 @@ import { Router, ActivatedRoute} from '@angular/router';
 export class MainMenuComponent implements OnInit {
  
   constructor(private menuRoute : Router,  private serviceInst:GetDataService) { }
+  window:string="users";
 
   nevigate(menuItem:string): void{
    
@@ -20,6 +21,8 @@ export class MainMenuComponent implements OnInit {
 
   ngOnInit() {
    //  this.serviceInst.loadArrays();
+   this.window ="users";
+
     }
 
 }
