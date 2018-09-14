@@ -1,7 +1,24 @@
+<form  >
 <nav>
-    <input type="button" value="users" #users (click)="nevigate(users.value)">
+   <!-- <input type="button" value="users" #users (click)="nevigate(users.value)">
     <input type="button" value="tasks" #tasks (click)="nevigate(tasks.value)">
-    <input type="button" value="posts" #posts (click)="nevigate(posts.value)">
+    <input type="button" value="posts" #posts (click)="nevigate(posts.value)"> -->
+    <input type="button" value ="users" #users  (click)="window=users.value">
+    <input type="button" value="tasks" #tasks (click)="window=tasks.value">
+    <input type="button"value="posts" #posts   (click)="window=posts.value">
  
+
 </nav>
 
+            <div *ngIf="window=='users' ">
+                <app-child-menu></app-child-menu>
+            </div>
+        
+            <div *ngIf="window=='tasks' ">
+                <app-tasks></app-tasks>
+            </div>
+    
+          <div *ngIf="window=='posts' ">
+              <app-posts></app-posts>
+         </div>
+</form>

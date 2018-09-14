@@ -1,0 +1,20 @@
+
+<nav>
+<input type="button" value ="All" #all  (click)="window=all.value">
+<input type="button" value ="Add" #add  (click)="window=add.value">
+<input type="button" value ="Search" #search  (click)="window=search.value">
+
+<div *ngIf="window=='All' ">
+<app-show-users > </app-show-users>
+</div>
+
+<div *ngIf="window=='Search' ">
+<app-search-user> </app-search-user>
+</div>
+
+<div *ngIf="window=='Add' ">
+<app-add-user>    </app-add-user>
+</div>
+
+
+</nav>

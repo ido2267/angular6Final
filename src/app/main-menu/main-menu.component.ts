@@ -20,7 +20,6 @@ export class MainMenuComponent implements OnInit {
 
   ngOnInit() {
    //  this.serviceInst.loadArrays();
-
-   }
+    }
 
 }

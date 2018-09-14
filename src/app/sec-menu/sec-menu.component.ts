@@ -21,7 +21,7 @@ export class SecMenuComponent implements OnInit {
   tasksArr:TasksObj[]=[];
   postArr:PostsObj[]=[];
   postsForShow:PresentPosts[]=[];
-   showUsers:boolean=false;
+  showUsers:boolean=false;
   showTasks:boolean=false;
   showPosts:boolean=false;
   menuItem:string="";
@@ -32,9 +32,8 @@ export class SecMenuComponent implements OnInit {
   taskColor:string="red";
 
   constructor(private serviceInst:GetDataService,  private menuRoute : Router, private menuAr : ActivatedRoute) { }
-
   prev(){ // return to prevoius page 
-    this.menuRoute.navigate(['']);
+    this.menuRoute.navigate(['child-menu/']);
  }
 
 
@@ -42,7 +41,7 @@ export class SecMenuComponent implements OnInit {
     this.showUsers = !this.showUsers;
     this.showPosts = false;
     this.showTasks = false
-     this.usersArr = this.serviceInst.usersArray;
+      this.usersArr = this.serviceInst.usersArray;
   //   console.log('name  ' + this.usersArr[0].UserObjName + ' city ' +  this.usersArr[0].UserObjCity);
   }
   getUserId(userId:number){
@@ -92,7 +91,8 @@ export class SecMenuComponent implements OnInit {
 
 
   ngOnInit() {    
-    
+    console.log('in sec-menu');// debug 
+
     this.menuAr.params.subscribe( data => this.menuItem = data['menu'] );
  // determine the type of screen the user will se:
      switch(this.menuItem)
@@ -107,7 +107,8 @@ export class SecMenuComponent implements OnInit {
       this.getPosts();
       break;
       default:
-      this.menuRoute.navigate(['/main-menu']);
+     // this.menuRoute.navigate(['/main-menu']);
+     this.getUsers();
     }
     
    }

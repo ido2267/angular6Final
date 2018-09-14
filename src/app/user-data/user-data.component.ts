@@ -25,10 +25,14 @@ export class UserDataComponent implements OnInit {
   constructor(private userService:GetDataService ,private lastPage : Router ,private actRoute : ActivatedRoute ) { }
 
   prev(){
-     this.lastPage.navigate(['sec-menu/:users']);
+  //   this.lastPage.navigate(['sec-menu/:users']);
+  this.lastPage.navigate(['child-menu']);
   }
 
   ngOnInit() {
+    // keep in storage a flag that prevent from loading again the list of users       
+    sessionStorage["listUpdated"] = true 
+
     // recieves user's id from the parent component and retrieve the relevant data for this user
     // the data is retrieved from the arrays in service get-data.service 
     this.actRoute.params.subscribe( data =>
@@ -38,7 +42,6 @@ export class UserDataComponent implements OnInit {
             this.tasksArray  = this.userService.getTasks(this.userId).filter(x=> !x.taskObjCompleted) 
            }
     );
- 
 
     }     
     // Send a delete command to the service
