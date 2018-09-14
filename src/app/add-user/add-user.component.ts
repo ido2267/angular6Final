@@ -14,6 +14,7 @@ export class AddUserComponent implements OnInit {
   UserName:string="";
   userCity:string="";
   userEmail:string="";
+  userValid:boolean=true;
 
   newUser:UsersObj;
   
@@ -31,6 +32,8 @@ export class AddUserComponent implements OnInit {
        this.serviceInst.addUser(this.newUser);
      }
    }
+
+  
   ngOnInit() {
   }
 
