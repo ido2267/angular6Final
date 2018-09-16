@@ -1,7 +1,7 @@
 form {
-
-    border: black solid 2px ;
-    width: 80%;
+    border-left: solid black;
+    border-right: solid black;
+     width: 80%;
     margin-left: 10%;
     background-color: rgb(202, 195, 195);
 
@@ -12,3 +12,8 @@ form {
     margin-left: 10%; 
 }
  
+html {
+
+    box-shadow: 0 15px 5px 0    rgba(44,82,100,.75);
+
+}

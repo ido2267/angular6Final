@@ -20,8 +20,9 @@ export class UserDataComponent implements OnInit {
   tasksArray:TasksObj[]=[];
   usereDeleted:boolean=true;
   userUpdated:boolean=true;
+  DataExists:boolean=true;
+  emailPattern:string = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
 
- 
   constructor(private userService:GetDataService ,private lastPage : Router ,private actRoute : ActivatedRoute ) { }
 
   prev(){
@@ -42,6 +43,11 @@ export class UserDataComponent implements OnInit {
            }
     );
 
+    if ( this.postsArray.length==0 &&  this.tasksArray.length ==0  )
+    {
+      this.DataExists = false;
+    }
+
     }     
     // Send a delete command to the service
     deleteUser(){
@@ -53,18 +59,24 @@ export class UserDataComponent implements OnInit {
               this.singleUser.UserObjCity ="";
               alert ('User deleted');
                 }
-
+                
+          this.prev();      
     }
 
     updateUser(valid:boolean): void{
-      if (!valid){
+       if (!valid){
+        alert ("Invalid data, User not updated");
         return;
       }
       this.userUpdated =  this.userService.updateUser(this.singleUser);
       if (this.userUpdated )
-      {alert ("User Updated !");}
-    }
+      { alert ("User updated! \n\ Name: " + this.singleUser.UserObjName
+      + " \n\ Email: "  +  this.singleUser.UserObjEmail + " \n\ City: "
+      + this.singleUser.UserObjCity  );;}
 
+      this.prev(); 
+    }
+  
 
 
   }

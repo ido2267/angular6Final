@@ -1,12 +1,38 @@
 
 <br>
 <form #userData="ngForm" (ngSubmit)="updateUser(userData.valid)">
-Full name     : <input type="text" required ngMinlength="5" name="fullName" #fullName="ngModel" [(ngModel)] = "singleUser.UserObjName"> <br>
- 
-Email address : <input type="text" required name="email" #email="ngModel" [(ngModel)] = "singleUser.UserObjEmail"> <br>
-City          : <input type="text" required ngMinlength="2" name="city" #city="ngModel" [(ngModel)] = "singleUser.UserObjCity"> <br>
+<label>Full name     : </label> 
+<input type="text" required ngMinlength="5" name="fullName" #fullName="ngModel" [(ngModel)] = "singleUser.UserObjName"> <br>
+<div *ngIf="fullName.errors"> 
+        <div *ngIf="fullName.errors.required" class="warning"> 
+              Name required.
+        </div>			   
+        <div *ngIf="fullName.errors.minlength" class="warning"> 
+              Name is too short
+         </div>	
+     </div> 
+<label> Email address : </label>
+ <input type="text" required name="email" #email="ngModel" [(ngModel)] = "singleUser.UserObjEmail"  [pattern]="emailPattern"> <br>
+<div *ngIf="email.errors"> 
+        <div *ngIf="email.errors.required" class="warning"> 
+              Email required.
+        </div>			   
+        <div *ngIf="email.errors.pattern" class="warning"> 
+              Email not valid.
+        </div>	
+  </div> 
+<label> City          : </label> 
+<input type="text" required ngMinlength="2" name="city" #city="ngModel" [(ngModel)] = "singleUser.UserObjCity"> <br>
+<div *ngIf="city.errors"> 
+        <div *ngIf="city.errors.required" class="warning"> 
+              City required.
+        </div>			   
+        <div *ngIf="city.errors.minlength" class="warning"> 
+              City name is too short.
+        </div>	
+     </div> 
 <div class="buttons">
-    <input type="submit" #update value="Update User"[disabled]="userData.pristine">
+    <input type="submit" #update value="Update User"[disabled]="userData.pristine || userData.invalid ">
 
     <input type="button" #delete  value="Delete User" (click)="deleteUser()">
 
@@ -17,7 +43,7 @@ City          : <input type="text" required ngMinlength="2" name="city" #city="n
 </div>
 
 
-<table border="1" class="run-animation">
+<table border="1" class="run-animation" *ngIf="DataExists">
     <tr> <th>Posts: </th> <th>  Tasks:</th></tr>
     <td>
           <ul *ngFor="let currPost of postsArray">

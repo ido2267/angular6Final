@@ -12,7 +12,8 @@
 
   .tasksPage {
       border: solid rgb(80, 80, 80) 1px;
- 
+      box-shadow: 0 5px 5px 0    rgb(80, 80, 80);
+
     width: 80%;
     margin-left: 10%;
     background-color: rgb(202, 195, 195);

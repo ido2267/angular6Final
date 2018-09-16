@@ -19,7 +19,9 @@ form {
     margin-left: 10%; 
 }
 
-
+input{
+    background-color: rgb(190, 188, 188);
+}
 
 
 .run-animation{ 

@@ -31,6 +31,13 @@ export class AddUserComponent implements OnInit {
        this.newUser = new UsersObj(0,this.UserName,this.userEmail,this.userCity);
        this.serviceInst.addUser(this.newUser);
      }
+     alert ("new user added \n\ Name: " + this.newUser.UserObjName
+             + "\n\ Email: "  +  this.newUser.UserObjEmail + "\n\ City: "
+             + this.newUser.UserObjCity  );
+            
+             
+       this.nevigate();      
+
    }
 
   

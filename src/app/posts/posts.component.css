@@ -17,10 +17,13 @@
     margin-left: 10%;
     background-color: rgb(156, 152, 152);
     border-radius: 4px;
+    box-shadow: 0 5px 5px 0    rgba(44,82,100,.75);
 
 }
 
-
+input{
+    background-color: rgb(190, 188, 188);
+}
 
 .run-animation{ 
     transition-property: background-color; 
