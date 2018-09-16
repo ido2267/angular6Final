@@ -9,7 +9,7 @@
      <input type="radio"  name="rad" (click)="tasksStatus='Uncompleted'">  Uncompeted tasks<br><br><br>
     </div>
     <input type="button" #return (click)="prev()" value="Previous Page">
-   <table border="1">
+   <table border="1" class=" run-animation">
      <th>Task Id</th> <th> Title:</th>  <th> Completed:</th>
      <tr *ngFor =  " let taskData of tasksArr | tasksPipe:tasksStatus" >
         <td *ngIf = "taskData.taskObjCompleted" style="color:green">  {{taskData.taskObjId}} </td>

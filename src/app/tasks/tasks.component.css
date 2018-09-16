@@ -17,3 +17,23 @@
     margin-left: 10%;
     background-color: rgb(202, 195, 195);
   }
+
+  
+
+.run-animation{ 
+    transition-property: background-color; 
+    transition-delay: 3s  ;
+    animation-name: revolve;
+    animation-duration: 3s;
+    animation-timing-function: ease-out;
+   }
+  @keyframes revolve{
+  from {
+  opacity: 0;
+    transform: scale(-1, 1);
+  }
+  to {
+  opacity: 1;
+     transform: scale(1,1);
+  }
+  }

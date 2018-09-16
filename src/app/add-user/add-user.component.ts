@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {GetDataService} from '../get-data.service';
 import { Router, ActivatedRoute} from '@angular/router';
 import {UsersObj} from '../users-obj';  
-
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-user',
@@ -15,7 +15,7 @@ export class AddUserComponent implements OnInit {
   userCity:string="";
   userEmail:string="";
   userValid:boolean=true;
-
+  emailPattern:string = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
   newUser:UsersObj;
   
   constructor(private menuRoute : Router,  private serviceInst:GetDataService) { }

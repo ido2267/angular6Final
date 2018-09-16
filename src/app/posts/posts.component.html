@@ -7,7 +7,7 @@ User id: <input type="text" #pst pattern="[0-9]"    value="0" (keyup)="getUserId
 <div class = "warning" [hidden]="userExist">  </div>
 <div   [hidden]="!userExist">  </div>  <!-- keep the same height-->
 <br>
-<table border="1">
+<table border="1"  class="run-animation">
 <th>Post Id</th> <th> title:</th>  <th> User:</th>
 <tr *ngFor =  " let postData of postsForShow | postsForUser:inUserId" > 
    <td>  {{postData.postId}} </td>

@@ -1,9 +1,10 @@
 
 <br>
 <form #userData="ngForm" (ngSubmit)="updateUser(userData.valid)">
-Full name     : <input type="text" required ngMinlength="2" name="fullName" #fullName [(ngModel)] = "singleUser.UserObjName"> <br>
-Email address : <input type="text" required name="email" #email [(ngModel)] = "singleUser.UserObjEmail"> <br>
-City          : <input type="text" required ngMinlength="2" name="city" #city [(ngModel)] = "singleUser.UserObjCity"> <br>
+Full name     : <input type="text" required ngMinlength="5" name="fullName" #fullName="ngModel" [(ngModel)] = "singleUser.UserObjName"> <br>
+ 
+Email address : <input type="text" required name="email" #email="ngModel" [(ngModel)] = "singleUser.UserObjEmail"> <br>
+City          : <input type="text" required ngMinlength="2" name="city" #city="ngModel" [(ngModel)] = "singleUser.UserObjCity"> <br>
 <div class="buttons">
     <input type="submit" #update value="Update User"[disabled]="userData.pristine">
 
@@ -16,7 +17,7 @@ City          : <input type="text" required ngMinlength="2" name="city" #city [(
 </div>
 
 
-<table border="1">
+<table border="1" class="run-animation">
     <tr> <th>Posts: </th> <th>  Tasks:</th></tr>
     <td>
           <ul *ngFor="let currPost of postsArray">

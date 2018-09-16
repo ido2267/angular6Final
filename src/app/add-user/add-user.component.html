@@ -1,10 +1,21 @@
 <form #add="ngForm" (ngSubmit)="userSubmit(add.valid)">
 
-  Full Name : <input type="text" name="user" minlength="3"  [(ngModel)]="UserName" #user="ngModel" ><br/>
+  <label for="user">Full Name :</label> 
+   <input type="text" name="user" minlength="5"  required [(ngModel)]="UserName" #user="ngModel" ><br/>
   <div *ngIf="user.invalid" class="warning">Name is required</div>
+  <label for="email">Email :</label> 
+       : <input type="email" name="email"  [(ngModel)]="userEmail" required #email="ngModel" [pattern]="emailPattern" ><br/>
+       <div *ngIf="email.errors"> 
+          <div *ngIf="email.errors.required" class="warning"> 
+                Email required.
+          </div>			   
+          <div *ngIf="email.errors.pattern" class="warning"> 
+                Email not valid.
+          </div>	
+       </div> 
+  <label for="city">  City      :</label> 
 
-  Email     : <input type="email" name="email"  [(ngModel)]="userEmail" #email="ngModel" ><br/>
-  City      : <input type="text" name="city" required minlength="2" [(ngModel)]="userCity" #city="ngModel"><br/>
+ <input type="text" name="city" required minlength="2" [(ngModel)]="userCity" #city="ngModel"><br/>
 
    
   <input type="submit" value="Add User">
