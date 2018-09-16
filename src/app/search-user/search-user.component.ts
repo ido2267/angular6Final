@@ -15,7 +15,8 @@ export class SearchUserComponent implements OnInit {
   constructor(private serviceInst:GetDataService,  private menuRoute : Router, private menuAr : ActivatedRoute) { }
   prev()
     {                                // return to prevoius page 
-     this.menuRoute.navigate(['main-menu/']);
+      this.menuRoute.navigate(['/users/show-users']);
+
      }
 
      getUsers(phrase:string)

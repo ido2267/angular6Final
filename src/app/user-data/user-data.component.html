@@ -1,10 +1,10 @@
 
 <br>
 <form #userData="ngForm" (ngSubmit)="updateUser(userData.valid)">
-
 Full name     : <input type="text" required ngMinlength="2" name="fullName" #fullName [(ngModel)] = "singleUser.UserObjName"> <br>
 Email address : <input type="text" required name="email" #email [(ngModel)] = "singleUser.UserObjEmail"> <br>
 City          : <input type="text" required ngMinlength="2" name="city" #city [(ngModel)] = "singleUser.UserObjCity"> <br>
+<div class="buttons">
     <input type="submit" #update value="Update User"[disabled]="userData.pristine">
 
     <input type="button" #delete  value="Delete User" (click)="deleteUser()">
@@ -13,7 +13,7 @@ City          : <input type="text" required ngMinlength="2" name="city" #city [(
 
     <div class="warning" [hidden]="usereDeleted">Failed to delete user</div>
     <div class="warning" [hidden]="userUpdated">Failed to update user</div>
-
+</div>
 
 
 <table border="1">

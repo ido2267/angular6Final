@@ -1,5 +1,10 @@
-searchForm{
 
-    border: solid black 5px;
-    background-color: rgb(229, 226, 226)
+  form {
+     
+    border: black solid 2px ;
+    width: 80%;
+    margin-left: 10%;
+    background-color: rgb(156, 152, 152);
+    border-radius: 4px;
+
 }

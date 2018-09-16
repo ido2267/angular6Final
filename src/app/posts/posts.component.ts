@@ -50,14 +50,12 @@ export class PostsComponent implements OnInit {
            // this.menuAr.params.subscribe( data => this.menuItem = data['menu'] );
         this.postArr = this.serviceInst.getPostsArray();
         this.usersArr = this.serviceInst.getUsersArray();
-        console.log('in posts'  this.postArr.length) ; // debug 
-        // load posts into postsForShow array 
+         // load posts into postsForShow array 
           this.postArr.forEach (x =>  {
           let str:string;
           str =   // Get user name by user id 
             this.usersArr.filter(y=> y.UserObjUserId == x.postObjUserId).map(z => z.UserObjName).reduce (
-          (xx,yy) => xx);
-          console.log('str ' + str); // debug 
+          (xx,yy) => {if ( xx == yy ) return xx;});
             // create a class of post for presentation 
           let currPost:PresentPosts = new PresentPosts( x.postObjId,  x.postObjUserId, x.postObjTitle , str);
           // add class to the array

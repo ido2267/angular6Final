@@ -9,8 +9,7 @@ import { RouterModule, Routes} from '@angular/router';
 import { AppComponent } from './app.component';
 import { UserDataComponent } from './user-data/user-data.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
-import { SecMenuComponent } from './sec-menu/sec-menu.component';
- import { PostsForUserPipe } from './posts-for-user.pipe';
+  import { PostsForUserPipe } from './posts-for-user.pipe';
 import { TasksPipePipe } from './tasks-pipe.pipe';
  import { ShowUsersComponent } from './show-users/show-users.component';
 import { SearchUserComponent } from './search-user/search-user.component';
@@ -40,8 +39,7 @@ const appRoutes : Routes = [
     AppComponent,
      UserDataComponent,
     MainMenuComponent,
-    SecMenuComponent,
-     PostsForUserPipe,
+      PostsForUserPipe,
     TasksPipePipe,
      ShowUsersComponent,
     SearchUserComponent,

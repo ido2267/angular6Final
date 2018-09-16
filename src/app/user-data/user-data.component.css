@@ -1,14 +1,20 @@
-userData{
-    margin-top: 10%;
-    
+form {
+     
     border: black solid 2px ;
     width: 80%;
     margin-left: 10%;
-    background-color: rgb(202, 195, 195);
+    background-color: rgb(156, 152, 152);
+    border-radius: 4px;
+
 }
 
 .warning{
 
     font-size: 12px;
     color: red;
+}
+ 
+
+.buttons{
+    margin-left: 10%; 
 }

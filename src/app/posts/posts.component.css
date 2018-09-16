@@ -9,3 +9,13 @@
     padding: 0 0 5px 5px;
     clear: both;
   }
+
+  form {
+     
+    border: black solid 2px ;
+    width: 80%;
+    margin-left: 10%;
+    background-color: rgb(156, 152, 152);
+    border-radius: 4px;
+
+}

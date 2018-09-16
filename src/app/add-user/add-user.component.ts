@@ -22,7 +22,7 @@ export class AddUserComponent implements OnInit {
  
   nevigate( ): void{
    
-     this.menuRoute.navigate(['/users/']);
+     this.menuRoute.navigate(['/users/show-users']);
 
    }
    userSubmit(valid:boolean):void {
