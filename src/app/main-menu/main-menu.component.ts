@@ -11,17 +11,16 @@ import { Router, ActivatedRoute} from '@angular/router';
 export class MainMenuComponent implements OnInit {
  
   constructor(private menuRoute : Router,  private serviceInst:GetDataService) { }
-  window:string="users";
-
+ 
   nevigate(menuItem:string): void{
    
-     this.menuRoute.navigate(['/sec-menu/' + menuItem]);
+     this.menuRoute.navigate(['/' + menuItem +'/']);
 
    }
 
   ngOnInit() {
-   //  this.serviceInst.loadArrays();
-   this.window ="users";
+    this.serviceInst.loadArrays();
+    this.menuRoute.navigate(['users']);
 
     }
 

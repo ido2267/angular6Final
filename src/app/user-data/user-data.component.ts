@@ -26,12 +26,11 @@ export class UserDataComponent implements OnInit {
 
   prev(){
   //   this.lastPage.navigate(['sec-menu/:users']);
-  this.lastPage.navigate(['main-menu']);
+  this.lastPage.navigate(['/users/show-users']);
+ 
   }
 
   ngOnInit() {
-    // keep in storage a flag that prevent from loading again the list of users       
-    sessionStorage["listUpdated"] = true 
 
     // recieves user's id from the parent component and retrieve the relevant data for this user
     // the data is retrieved from the arrays in service get-data.service 

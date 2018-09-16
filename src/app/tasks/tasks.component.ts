@@ -15,20 +15,20 @@ export class TasksComponent implements OnInit {
      
    tasksArr:TasksObj[]=[];
  
-   menuItem:string="";
+//menuItem:string="";
  
   tasksStatus:string="all";
  
   constructor(private serviceInst:GetDataService,  private menuRoute : Router, private menuAr : ActivatedRoute) { }
   prev(){ // return to prevoius page 
-    this.menuRoute.navigate(['child-menu/']);
+    this.menuRoute.navigate(['']);
  }
 
 
   ngOnInit() {    
  
-    this.menuAr.params.subscribe( data => this.menuItem = data['menu'] );
-    this.tasksArr = this.serviceInst.tasksArray;
+    // this.menuAr.params.subscribe( data => this.menuItem = data['menu'] );
+    this.tasksArr = this.serviceInst.getTasksArray();
 
     
    }

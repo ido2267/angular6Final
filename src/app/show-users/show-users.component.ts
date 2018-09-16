@@ -21,9 +21,8 @@ export class ShowUsersComponent implements OnInit {
   constructor(private serviceInst:GetDataService,  private menuRoute : Router, private menuAr : ActivatedRoute) { }
 
   ngOnInit() {
-    this.usersArr = this.serviceInst.usersArray;
-    this.flag = sessionStorage["listUpdated"]
-
+    this.usersArr = this.serviceInst.getUsersArray();
+    this.menuRoute.onSameUrlNavigation ='reload'            ;
   }
 
 }

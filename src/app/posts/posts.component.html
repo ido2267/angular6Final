@@ -3,7 +3,8 @@
 
 User id: <input type="text" #pst pattern="[0-9]"    value="0" (keyup)="getUserId(pst.value)" > 
 <div class = "warning" [hidden]="userExist">There is no such user Id </div>
-
+<span> <input type="button" #return (click)="prev()" value="Previous Page"> </span>
+<div class = "warning" [hidden]="userExist">  </div>
 <div   [hidden]="!userExist">  </div>  <!-- keep the same height-->
 <br>
 <table border="1">
@@ -15,5 +16,4 @@ User id: <input type="text" #pst pattern="[0-9]"    value="0" (keyup)="getUserId
 </table>
 
 
-<input type="button" #return (click)="prev()" value="Previous Page">
 </form>

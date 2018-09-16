@@ -20,9 +20,9 @@ export class AddUserComponent implements OnInit {
   
   constructor(private menuRoute : Router,  private serviceInst:GetDataService) { }
  
-  nevigate(menuItem:string): void{
+  nevigate( ): void{
    
-     this.menuRoute.navigate(['/child-menu/']);
+     this.menuRoute.navigate(['/users/']);
 
    }
    userSubmit(valid:boolean):void {

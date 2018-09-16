@@ -24,9 +24,9 @@ export class GetDataService {
   private currTask :TasksObj;
   private currpost :PostsObj;
 
-  public usersArray :UsersObj[]=[];
-  public tasksArray :TasksObj[]=[];
-  public postsArray :PostsObj[]=[];
+  private usersArray :UsersObj[]=[];
+  private tasksArray :TasksObj[]=[];
+  private postsArray :PostsObj[]=[];
   
   private helpArrayUsers :UsersObj[]=[];
   private userDeleted:boolean=false;
@@ -36,41 +36,23 @@ export class GetDataService {
 
   constructor(private serviceHttp:HttpClient) { }
 
-  loadArrays()  {
+// The arrays will be private so the user needs functions to access the data
+getUsersArray():UsersObj[]{
 
-    // load users array 
-    this.serviceHttp.get<any[]>(this.usersUrl).subscribe(response =>
-      {
-      for (let i = 0 ; i < response.length; i++)
-       {
-         this.currUser = new UsersObj(response[i].id, response[i].name, response[i].email,
-         response[i].address.city);
-         
+      return this.usersArray;
+}     
+
+getPostsArray() :  PostsObj[] {
+      return  this.postsArray;
+}
+
+getTasksArray():TasksObj[]{
+
+      return this.tasksArray;
+    }
+
+
  
-         this.usersArray.push(this.currUser);
-          
-         }
-      });
-            
-       // load posts array 
-        this.serviceHttp.get<any[]>(this.postsUrl).subscribe(response =>
-        {
-        for (var i = 0 ; i < response.length; i++)
-        { this.currpost = new PostsObj(response[i].id,response[i].userId, response[i].title, response[i].body );
-        this.postsArray.push(this.currpost);
-          }
-        });
-       // load tasks array 
-
-          this.serviceHttp.get<any[]>(this.tasksUrl).subscribe(response =>
-          {
-            for (var i = 0 ; i < response.length; i++)
-              { this.currTask = new TasksObj(response[i].id, response[i].userId, response[i].title, response[i].completed);
-                this.tasksArray.push(this.currTask);
-                }
-              });
-          //  return this.postsArray;
-            }
 // a function for getting a single user out of an array 
 getSingleUser (userId:number):UsersObj{
       
@@ -179,6 +161,41 @@ getPostsForUser (userId:number):PostsObj[]{
       return userExists;
     }
 
+    loadArrays()  {
+
+      // load users array 
+      this.serviceHttp.get<any[]>(this.usersUrl).subscribe(response =>
+        {
+        for (let i = 0 ; i < response.length; i++)
+         {
+           this.currUser = new UsersObj(response[i].id, response[i].name, response[i].email,
+           response[i].address.city);
+           
+   
+           this.usersArray.push(this.currUser);
+            
+           }
+        });
+              
+         // load posts array 
+          this.serviceHttp.get<any[]>(this.postsUrl).subscribe(response =>
+          {
+          for (var i = 0 ; i < response.length; i++)
+          { this.currpost = new PostsObj(response[i].id,response[i].userId, response[i].title, response[i].body );
+          this.postsArray.push(this.currpost);
+            }
+          });
+         // load tasks array 
+  
+            this.serviceHttp.get<any[]>(this.tasksUrl).subscribe(response =>
+            {
+              for (var i = 0 ; i < response.length; i++)
+                { this.currTask = new TasksObj(response[i].id, response[i].userId, response[i].title, response[i].completed);
+                  this.tasksArray.push(this.currTask);
+                  }
+                });
+            //  return this.postsArray;
+              }
 }
 
 

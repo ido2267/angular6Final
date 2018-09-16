@@ -15,12 +15,13 @@ export class SearchUserComponent implements OnInit {
   constructor(private serviceInst:GetDataService,  private menuRoute : Router, private menuAr : ActivatedRoute) { }
   prev()
     {                                // return to prevoius page 
-     this.menuRoute.navigate(['child-menu/']);
+     this.menuRoute.navigate(['main-menu/']);
      }
 
      getUsers(phrase:string)
      {
-      this.usersList = this.serviceInst.usersArray.filter(x=> this.matchFound(phrase, x.UserObjName));
+      this.usersList =  this.serviceInst.getUsersArray();
+      this.usersList =  this.usersList.filter(x=> this.matchFound(phrase, x.UserObjName));
 
 
      }
