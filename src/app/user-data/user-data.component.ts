@@ -16,8 +16,8 @@ export class UserDataComponent implements OnInit {
 
   userId:number=0;
   singleUser:UsersObj;
-  postsArray:PostsObj[]=[];
-  tasksArray:TasksObj[]=[];
+  postsArr:PostsObj[]=[];
+  tasksArr:TasksObj[]=[];
   usereDeleted:boolean=true;
   userUpdated:boolean=true;
   DataExists:boolean=true;
@@ -32,18 +32,18 @@ export class UserDataComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    // recieves user's id from the parent component and retrieve the relevant data for this user
+     // recieves user's id from the parent component and retrieve the relevant data for this user
     // the data is retrieved from the arrays in service get-data.service 
     this.actRoute.params.subscribe( data =>
       { this.userId = data['id'] 
             this.singleUser  = this.userService.getSingleUser(this.userId);   
-            this.postsArray  = this.userService.getPostsForUser(this.userId);  
-            this.tasksArray  = this.userService.getTasks(this.userId).filter(x=> !x.taskObjCompleted) 
+            this.postsArr  = this.userService.getPostsForUser(this.userId);  
+            // only uncompleted tasks will be presented
+            this.tasksArr  = this.userService.getTasks(this.userId).filter(x=> !x.taskObjCompleted) 
            }
     );
 
-    if ( this.postsArray.length==0 &&  this.tasksArray.length ==0  )
+    if ( this.postsArr.length==0 &&  this.tasksArr.length ==0  )
     {
       this.DataExists = false;
     }

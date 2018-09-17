@@ -28,37 +28,37 @@ export class GetDataService {
   private tasksArray :TasksObj[]=[];
   private postsArray :PostsObj[]=[];
   
-  private helpArrayUsers :UsersObj[]=[];
   private userDeleted:boolean=false;
   private userUpdated:boolean=false;
-
   private index:number=0;
-
+ 
   constructor(private serviceHttp:HttpClient) { }
 
 // The arrays will be private so the user needs functions to access the data
 getUsersArray():UsersObj[]{
-
+    
       return this.usersArray;
 }     
 
 getPostsArray() :  PostsObj[] {
-      return  this.postsArray;
+          return  this.postsArray;
 }
 
 getTasksArray():TasksObj[]{
-
-      return this.tasksArray;
+       return this.tasksArray;
     }
 
 
  
 // a function for getting a single user out of an array 
 getSingleUser (userId:number):UsersObj{
-      
-  this.helpArrayUsers =   this.usersArray.filter(x=> x.UserObjUserId == userId);
-  this.currUser = this.helpArrayUsers[0];
-  return this.currUser;
+    
+  this.currUser = this.usersArray.filter(x=> x.UserObjUserId == userId).reduce((xx,yy)=>
+  {
+    if (xx.UserObjUserId == yy.UserObjUserId)
+    return xx;
+  });  
+    return this.currUser;
 
 }
 
@@ -71,6 +71,7 @@ getPostsForUser (userId:number):PostsObj[]{
 // a function for getting all the the tasks for certain user id 
 
  getTasks(userId:number):TasksObj[]{
+
     return  this.tasksArray.filter(x=> x.taskObjUserId == userId);
 }
 // a function for deleting a given user from the array  
@@ -82,19 +83,18 @@ getPostsForUser (userId:number):PostsObj[]{
       {
         this.usersArray.splice(this.index,1);
         this.userDeleted= true;
-// In reality we will have to delete the data from the database as well:
-// this.serviceHttp.delete(this.usersUrl + "/" + userId).subscribe( (data) => console.log(data));
-
-      }
+//   delete the data from the database as well:
+ this.serviceHttp.delete(this.usersUrl + "/" + userId).subscribe( (data) => console.log(data));
+         }
       else
       {   this.userDeleted= false;}
-   
-
       return this.userDeleted;
     }
-       updateUser(changedUserObj:UsersObj):boolean
+
+// a function for updating  a given user in the array  
+updateUser(changedUserObj:UsersObj):boolean
     {
-      this.index = this.usersArray.map(x=> x.UserObjUserId).indexOf(changedUserObj.UserObjUserId) 
+       this.index = this.usersArray.map(x=> x.UserObjUserId).indexOf(changedUserObj.UserObjUserId) 
       if (this.index >= 0 )
       {
         this.usersArray[this.index].UserObjCity = changedUserObj.UserObjCity;
@@ -102,17 +102,16 @@ getPostsForUser (userId:number):PostsObj[]{
         this.usersArray[this.index].UserObjName = changedUserObj.UserObjName;
         this.usersArray[this.index].UserObjUserId = changedUserObj.UserObjUserId;
        this.userUpdated= true;
-// In reality we will have to update the data in the database as well:
-// this.serviceHttp.put(this.usersUrl + "/" + changedUserObj.UserObjUserId,changedUserObj).subscribe( (data) => console.log(data));
-
-
-      }
+//  update the data in the database as well:
+ this.serviceHttp.put(this.usersUrl + "/" + changedUserObj.UserObjUserId,changedUserObj).subscribe( (data) => console.log(data));
+ 
+            
+       }
       else
       {   this.userUpdated= false;}
-   
-
       return this.userUpdated;
     }
+// a function for adding  a given user to the array  
 
     addUser( newUser:UsersObj ):boolean{
       var userExists:boolean = true;
@@ -129,22 +128,26 @@ getPostsForUser (userId:number):PostsObj[]{
        this.index += 1;   
        newUser.UserObjUserId = this.index;
        this.usersArray.push(newUser);
-      // In reality we will have to add the data in the database as well:
-// this.serviceHttp.post(this.usersUrl + "/" +  this.index,newUser).subscribe( (data) => console.log(data));
-             
+      //   add the data in the database as well:
+     this.serviceHttp.post(this.usersUrl + "/" +  this.index,newUser).subscribe( (data) => console.log(data));
+ 
     }
   // a function that find existing user with details of new user 
     matchUser(newUser:UsersObj, userIndex:number):boolean
     {
       var userExists:boolean = true;
+      var username:string = newUser.UserObjName;
+      var userEmail:string = newUser.UserObjEmail;
+      var userCity:string = newUser.UserObjCity;
+
       while (userExists)
       {
         
-        this.index = this.usersArray.map(x=> x.UserObjName).indexOf(newUser.UserObjName,userIndex)
+        this.index = this.usersArray.map(x=> x.UserObjName).indexOf(username,userIndex)
         if (this.index >=0 )
         {
-         if (  this.usersArray[this.index].UserObjEmail == newUser.UserObjEmail &&
-            this.usersArray[this.index].UserObjCity == newUser.UserObjCity)
+         if (  this.usersArray[this.index].UserObjEmail == userEmail &&
+            this.usersArray[this.index].UserObjCity == userCity)
             {
               return userExists;
             }
@@ -162,19 +165,14 @@ getPostsForUser (userId:number):PostsObj[]{
     }
 
     loadArrays()  {
-
-      // load users array 
+       // load users array 
       this.serviceHttp.get<any[]>(this.usersUrl).subscribe(response =>
         {
         for (let i = 0 ; i < response.length; i++)
          {
            this.currUser = new UsersObj(response[i].id, response[i].name, response[i].email,
            response[i].address.city);
-           
-   
-           this.usersArray.push(this.currUser);
-            
-           }
+           this.usersArray.push(this.currUser);}
         });
               
          // load posts array 
@@ -194,8 +192,8 @@ getPostsForUser (userId:number):PostsObj[]{
                   this.tasksArray.push(this.currTask);
                   }
                 });
-            //  return this.postsArray;
-              }
+       }
+    
 }
 
 

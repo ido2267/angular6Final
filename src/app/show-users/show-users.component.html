@@ -1,8 +1,10 @@
-<!--<div [hidden]  ="flag"> -->
-  <div> 
-<ul *ngFor =  " let userData of usersArr" >
-  <li>  <a [routerLink]="['/user-data',userData.UserObjUserId]" > {{userData.UserObjName}}</a> </li>
-</ul>
+
+ <div> 
+    <ul *ngFor =  " let userData of usersArr" >
+      <li> 
+         <a [routerLink]="['/users/user-data', userData.UserObjUserId]" > {{userData.UserObjName}}</a> 
+       </li>
+    </ul>
 </div>
 
  

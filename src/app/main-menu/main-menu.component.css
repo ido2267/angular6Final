@@ -5,9 +5,12 @@
     margin-left: 10%;
     border-radius: 4px;
     box-shadow: 0 5px 5px 0    rgba(44,82,100,.75);
-
 }
 
 .buttons{
     margin-left: 10%; 
+  
+}
+input {
+    width:30%;
 }

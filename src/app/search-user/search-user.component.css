@@ -11,3 +11,8 @@
 input{
     background-color: rgb(190, 188, 188);
 }
+p {
+
+    color: white;
+    text-shadow: 2px 2px 4px #000000;   
+}

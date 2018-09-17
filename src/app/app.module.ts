@@ -20,16 +20,13 @@ import { UsersComponent } from './users/users.component';
  
 const appRoutes : Routes = [
   { path : '' , component : MainMenuComponent } ,
-
-   { path : 'users' , component :UsersComponent, children :[
-   { path : 'search-user' , component : SearchUserComponent },
-   { path : 'add-user' , component : AddUserComponent },
-  
-  { path : 'show-users' , component : ShowUsersComponent }]},
-  { path : 'user-data/:id' , component : UserDataComponent },   
-
-   { path : 'posts', component : PostsComponent},
-    { path : 'tasks', component : TasksComponent}
+  { path : 'users' , component :UsersComponent, children :[
+  { path : 'search-user' , component : SearchUserComponent },
+  { path : 'add-user' , component : AddUserComponent },
+  { path : 'show-users' , component : ShowUsersComponent},
+  { path : 'user-data/:id' , component : UserDataComponent }  ]},
+  { path : 'posts', component : PostsComponent},
+  { path : 'tasks', component : TasksComponent}
 
    //,{ path : 'sec-menu/:menu' , component : SecMenuComponent }  
   ];

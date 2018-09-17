@@ -1,8 +1,7 @@
 
-<br>
 <form #userData="ngForm" (ngSubmit)="updateUser(userData.valid)">
 <label>Full name     : </label> 
-<input type="text" required ngMinlength="5" name="fullName" #fullName="ngModel" [(ngModel)] = "singleUser.UserObjName"> <br>
+<input type="text" required minlength="5" name="fullName" #fullName="ngModel" [(ngModel)] = "singleUser.UserObjName"> <br>
 <div *ngIf="fullName.errors"> 
         <div *ngIf="fullName.errors.required" class="warning"> 
               Name required.
@@ -22,7 +21,7 @@
         </div>	
   </div> 
 <label> City          : </label> 
-<input type="text" required ngMinlength="2" name="city" #city="ngModel" [(ngModel)] = "singleUser.UserObjCity"> <br>
+<input type="text" required minlength="2" name="city" #city="ngModel" [(ngModel)] = "singleUser.UserObjCity"> <br>
 <div *ngIf="city.errors"> 
         <div *ngIf="city.errors.required" class="warning"> 
               City required.
@@ -46,12 +45,12 @@
 <table border="1" class="run-animation" *ngIf="DataExists">
     <tr> <th>Posts: </th> <th>  Tasks:</th></tr>
     <td>
-          <ul *ngFor="let currPost of postsArray">
+          <ul *ngFor="let currPost of postsArr">
             <li>{{currPost.postObjTitle}}</li> 
           </ul>
     </td>
     <td>
-          <ul *ngFor="let currTask of tasksArray">
+          <ul *ngFor="let currTask of tasksArr">
               <li>{{currTask.taskObjTitle}}</li> 
            </ul>
     </td>   

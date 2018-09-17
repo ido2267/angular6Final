@@ -4,12 +4,7 @@
     color: red;
 }
  
-.vertical-radio-buttons div {
-    display: block;
-    padding: 0 0 5px 5px;
-    clear: both;
-  }
-
+ 
   form {
      
     border: black solid 2px ;
@@ -18,7 +13,11 @@
     background-color: rgb(156, 152, 152);
     border-radius: 4px;
     box-shadow: 0 5px 5px 0    rgba(44,82,100,.75);
-
+ 
+}
+label ,th {
+color: white;
+    text-shadow: 2px 2px 4px #000000;   
 }
 
 input{
@@ -42,3 +41,5 @@ input{
      transform: scale(1,1);
   }
   }
+
+ 
