@@ -8,19 +8,18 @@
     display: block;
     padding: 0 0 5px 5px;
     clear: both;
-    color: white;
-    text-shadow: 2px 2px 4px #000000;
+ 
   }
-th{
+  .vertical-radio-buttons  , th{
     color: white;
-    text-shadow: 2px 2px 4px #000000;    
+    text-shadow: 0 0 1px black, 0 0 1px black; 
 }
   .tasksPage {
       border: solid rgb(80, 80, 80) 1px;
       box-shadow: 0 5px 5px 0    rgb(80, 80, 80);
       width: 80%;
       margin-left: 10%;
-      background-color: rgb(202, 195, 195);
+      background-color: rgb(155, 149, 149);
   }
 
   
@@ -31,7 +30,7 @@ th{
     animation-name: revolve;
     animation-duration: 3s;
     animation-timing-function: ease-out;
-
+    width: 100%
    }
   @keyframes revolve{
   from {
