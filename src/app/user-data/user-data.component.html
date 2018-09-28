@@ -31,10 +31,9 @@
         </div>	
      </div> 
 <div class="buttons">
-    <input type="submit" #update value="Update User"[disabled]="userData.pristine || userData.invalid ">
-
-    <input type="button" #delete  value="Delete User" (click)="deleteUser()">
-
+    <input type="submit" #update value="Update User" [disabled]="userData.pristine || userData.invalid ">
+    <input type="button" #matButton name="mat-button"  value="Delete User" (click)="openDialog()"> 
+   <!-- <button mat-button (click)="openDialog()">Delete User</button>-->
     <input type="button" #return (click)="prev()" value="Previous Page">
 
     <div class="warning" [hidden]="usereDeleted">Failed to delete user</div>

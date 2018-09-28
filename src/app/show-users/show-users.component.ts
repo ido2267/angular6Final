@@ -21,8 +21,7 @@ export class ShowUsersComponent implements OnInit {
   constructor(private serviceInst:GetDataService,  private menuRoute : Router) { }
 
   ngOnInit() {
-    this.usersArr = this.serviceInst.getUsersArray();
- //   this.menuRoute.onSameUrlNavigation ='reload'            ;
-  }
+      this.usersArr = this.serviceInst.getUsersArray();
+   }
 
 }

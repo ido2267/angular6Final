@@ -36,15 +36,19 @@ export class GetDataService {
 
 // The arrays will be private so the user needs functions to access the data
 getUsersArray():UsersObj[]{
-    
-      return this.usersArray;
+   
+       return this.usersArray;
 }     
 
 getPostsArray() :  PostsObj[] {
+   
+
           return  this.postsArray;
 }
 
 getTasksArray():TasksObj[]{
+   
+
        return this.tasksArray;
     }
 
@@ -52,32 +56,37 @@ getTasksArray():TasksObj[]{
  
 // a function for getting a single user out of an array 
 getSingleUser (userId:number):UsersObj{
-    
-  this.currUser = this.usersArray.filter(x=> x.UserObjUserId == userId).reduce((xx,yy)=>
+   
+
+   this.currUser = this.usersArray.filter(x=> x.UserObjUserId == userId).reduce((xx,yy)=>
   {
     if (xx.UserObjUserId == yy.UserObjUserId)
     return xx;
   });  
-    return this.currUser;
+     return this.currUser;
 
 }
 
 // a function for getting all the the posts for certain user id 
 getPostsForUser (userId:number):PostsObj[]{
- 
-  return this.postsArray.filter(x=> x.postObjUserId == userId);
+   
+
+   return this.postsArray.filter(x=> x.postObjUserId == userId);
 
 }
 // a function for getting all the the tasks for certain user id 
 
- getTasks(userId:number):TasksObj[]{
+ getTasksForUser(userId:number):TasksObj[]{
+   
 
-    return  this.tasksArray.filter(x=> x.taskObjUserId == userId);
+     return  this.tasksArray.filter(x=> x.taskObjUserId == userId);
 }
 // a function for deleting a given user from the array  
 
     deleteUser(userId:number):boolean
     {
+       
+
       this.index = this.usersArray.map(x=> x.UserObjUserId).indexOf(userId) 
       if (this.index >= 0 )
       {
@@ -93,8 +102,9 @@ getPostsForUser (userId:number):PostsObj[]{
 
 // a function for updating  a given user in the array  
 updateUser(changedUserObj:UsersObj):boolean
-    {
-       this.index = this.usersArray.map(x=> x.UserObjUserId).indexOf(changedUserObj.UserObjUserId) 
+    {    
+
+        this.index = this.usersArray.map(x=> x.UserObjUserId).indexOf(changedUserObj.UserObjUserId) 
       if (this.index >= 0 )
       {
         this.usersArray[this.index].UserObjCity = changedUserObj.UserObjCity;
@@ -114,6 +124,8 @@ updateUser(changedUserObj:UsersObj):boolean
 // a function for adding  a given user to the array  
 
     addUser( newUser:UsersObj ):boolean{
+       
+
       var userExists:boolean = true;
       // first let's see if user's details allready exists 
       userExists =  this.matchUser(newUser,0);
@@ -135,12 +147,13 @@ updateUser(changedUserObj:UsersObj):boolean
   // a function that find existing user with details of new user 
     matchUser(newUser:UsersObj, userIndex:number):boolean
     {
+       
+
       var userExists:boolean = true;
       var username:string = newUser.UserObjName;
       var userEmail:string = newUser.UserObjEmail;
       var userCity:string = newUser.UserObjCity;
-
-      while (userExists)
+        while (userExists)
       {
         
         this.index = this.usersArray.map(x=> x.UserObjName).indexOf(username,userIndex)
@@ -165,7 +178,9 @@ updateUser(changedUserObj:UsersObj):boolean
     }
 
     loadArrays()  {
-       // load users array 
+       
+
+        // load users array 
       this.serviceHttp.get<any[]>(this.usersUrl).subscribe(response =>
         {
         for (let i = 0 ; i < response.length; i++)

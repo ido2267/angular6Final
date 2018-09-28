@@ -10,7 +10,7 @@ import { Router, ActivatedRoute} from '@angular/router';
 })
 export class SearchUserComponent implements OnInit {
  
-  private usersList:UsersObj[]=[];
+  public usersList:UsersObj[]=[];
    
   constructor(private serviceInst:GetDataService,  private menuRoute : Router, private menuAr : ActivatedRoute) { }
   prev()
