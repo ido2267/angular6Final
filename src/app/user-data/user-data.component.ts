@@ -93,5 +93,7 @@ export class UserDataComponent implements OnInit {
 @Component({
   selector: 'dialog-window',
   templateUrl: 'dialog-window.html',
+  styleUrls: ['./user-data.component.css']
+
 })
 export class DialogWindow {}

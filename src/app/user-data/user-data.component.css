@@ -16,9 +16,6 @@ form {
     text-shadow: 0 0 1px black, 0 0 1px black;
  }
 
-.buttons{
-    margin-left: 10%; 
-}
 
 input{
     background-color: rgb(190, 188, 188);
@@ -47,11 +44,19 @@ input{
   
 .buttons {
     background-color: rgba(255,255,255,.5);
+ 
+    margin-left: 10%; 
+
   }
   
   .buttons:hover {
     background-color: rgba(255,255,255,.3);
   }
-  .jumpWindow{
-      border: red solid 3px;
-  }
+ .JumpWindow{
+     border: solid red 2px;
+     padding: 20px;
+ }
+ h2 {
+     text-align: center;
+ }
+ 
