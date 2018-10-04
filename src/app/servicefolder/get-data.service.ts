@@ -1,25 +1,18 @@
-
-
-import { Injectable } from '@angular/core';
+import {Injectable, OnDestroy } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {UsersObj} from './users-obj';  
-import {TasksObj} from './tasks-obj';
-import {PostsObj} from './posts-obj';
-
-
+import {UsersObj} from '../types/users-obj';  
+import {TasksObj} from '../types/tasks-obj';
+import {PostsObj} from '../types/posts-obj';
+import {untilComponentDestroyed} from "@w11k/ngx-componentdestroyed";
+ 
+const  usersUrl:string='https://jsonplaceholder.typicode.com/users';
+const  tasksUrl:string='https://jsonplaceholder.typicode.com/todos';
+const  postsUrl:string='https://jsonplaceholder.typicode.com/posts';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GetDataService {
-
-  private usersUrl:string='https://jsonplaceholder.typicode.com/users';
-  private tasksUrl:string=' https://jsonplaceholder.typicode.com/todos';
-  private postsUrl:string=' https://jsonplaceholder.typicode.com/posts';
-
-// a single object will be generated with a "new" command for each member and then 
-// added to the relevant array with "push" command 
-
+export class GetDataService implements OnDestroy {
   private currUser :UsersObj;
   private currTask :TasksObj;
   private currpost :PostsObj;
@@ -34,16 +27,12 @@ export class GetDataService {
  
   constructor(private serviceHttp:HttpClient) { }
 
-// The arrays will be private so the user needs functions to access the data
-getUsersArray():UsersObj[]{
-   
-       return this.usersArray;
+ getUsersArray():UsersObj[]{
+      return this.usersArray;
 }     
 
 getPostsArray() :  PostsObj[] {
-   
-
-          return  this.postsArray;
+   return  this.postsArray;
 }
 
 getTasksArray():TasksObj[]{
@@ -52,12 +41,9 @@ getTasksArray():TasksObj[]{
        return this.tasksArray;
     }
 
-
  
-// a function for getting a single user out of an array 
 getSingleUser (userId:number):UsersObj{
    
-
    this.currUser = this.usersArray.filter(x=> x.UserObjUserId == userId).reduce((xx,yy)=>
   {
     if (xx.UserObjUserId == yy.UserObjUserId)
@@ -66,23 +52,21 @@ getSingleUser (userId:number):UsersObj{
      return this.currUser;
 
 }
-
-// a function for getting all the the posts for certain user id 
+ 
 getPostsForUser (userId:number):PostsObj[]{
    
 
    return this.postsArray.filter(x=> x.postObjUserId == userId);
 
 }
-// a function for getting all the the tasks for certain user id 
+ 
 
  getTasksForUser(userId:number):TasksObj[]{
    
 
      return  this.tasksArray.filter(x=> x.taskObjUserId == userId);
 }
-// a function for deleting a given user from the array  
-
+ 
     deleteUser(userId:number):boolean
     {
        
@@ -92,16 +76,14 @@ getPostsForUser (userId:number):PostsObj[]{
       {
         this.usersArray.splice(this.index,1);
         this.userDeleted= true;
-//   delete the data from the database as well:
- this.serviceHttp.delete(this.usersUrl + "/" + userId).subscribe( (data) => console.log(data));
+  this.serviceHttp.delete(usersUrl + "/" + userId).subscribe( (data) => console.log(data));
          }
       else
       {   this.userDeleted= false;}
       return this.userDeleted;
     }
 
-// a function for updating  a given user in the array  
-updateUser(changedUserObj:UsersObj):boolean
+ updateUser(changedUserObj:UsersObj):boolean
     {    
 
         this.index = this.usersArray.map(x=> x.UserObjUserId).indexOf(changedUserObj.UserObjUserId) 
@@ -112,8 +94,7 @@ updateUser(changedUserObj:UsersObj):boolean
         this.usersArray[this.index].UserObjName = changedUserObj.UserObjName;
         this.usersArray[this.index].UserObjUserId = changedUserObj.UserObjUserId;
        this.userUpdated= true;
-//  update the data in the database as well:
- this.serviceHttp.put(this.usersUrl + "/" + changedUserObj.UserObjUserId,changedUserObj).subscribe( (data) => console.log(data));
+  this.serviceHttp.put(usersUrl + "/" + changedUserObj.UserObjUserId,changedUserObj).subscribe( (data) => console.log(data));
  
             
        }
@@ -121,18 +102,13 @@ updateUser(changedUserObj:UsersObj):boolean
       {   this.userUpdated= false;}
       return this.userUpdated;
     }
-// a function for adding  a given user to the array  
-
+ 
     addUser( newUser:UsersObj ):boolean{
-       
-
-      var userExists:boolean = true;
-      // first let's see if user's details allready exists 
-      userExists =  this.matchUser(newUser,0);
+       var userExists:boolean = true;
+       userExists =  this.matchUser(newUser,0);
       if (userExists)
       {return false;}
-      // next  we should find a free user's Id 
-      this.index = this.usersArray.map(x=> x.UserObjUserId).reduce((y,z)=> {
+       this.index = this.usersArray.map(x=> x.UserObjUserId).reduce((y,z)=> {
         if (z > y)
         {return z;}
         else
@@ -140,15 +116,11 @@ updateUser(changedUserObj:UsersObj):boolean
        this.index += 1;   
        newUser.UserObjUserId = this.index;
        this.usersArray.push(newUser);
-      //   add the data in the database as well:
-     this.serviceHttp.post(this.usersUrl + "/" +  this.index,newUser).subscribe( (data) => console.log(data));
+      this.serviceHttp.post(usersUrl + "/" +  this.index,newUser).subscribe( (data) => console.log(data));
  
     }
-  // a function that find existing user with details of new user 
-    matchUser(newUser:UsersObj, userIndex:number):boolean
+     matchUser(newUser:UsersObj, userIndex:number):boolean
     {
-       
-
       var userExists:boolean = true;
       var username:string = newUser.UserObjName;
       var userEmail:string = newUser.UserObjEmail;
@@ -177,11 +149,8 @@ updateUser(changedUserObj:UsersObj):boolean
       return userExists;
     }
 
-    loadArrays()  {
-       
-
-        // load users array 
-      this.serviceHttp.get<any[]>(this.usersUrl).subscribe(response =>
+    loadArrays()  { 
+      this.serviceHttp.get<any[]>(usersUrl).pipe(untilComponentDestroyed(this)).subscribe(response =>
         {
         for (let i = 0 ; i < response.length; i++)
          {
@@ -190,17 +159,15 @@ updateUser(changedUserObj:UsersObj):boolean
            this.usersArray.push(this.currUser);}
         });
               
-         // load posts array 
-          this.serviceHttp.get<any[]>(this.postsUrl).subscribe(response =>
+           this.serviceHttp.get<any[]>(postsUrl).pipe(untilComponentDestroyed(this)).subscribe(response =>
           {
           for (var i = 0 ; i < response.length; i++)
           { this.currpost = new PostsObj(response[i].id,response[i].userId, response[i].title, response[i].body );
           this.postsArray.push(this.currpost);
             }
           });
-         // load tasks array 
-  
-            this.serviceHttp.get<any[]>(this.tasksUrl).subscribe(response =>
+   
+            this.serviceHttp.get<any[]>(tasksUrl).pipe(untilComponentDestroyed(this)).subscribe(response =>
             {
               for (var i = 0 ; i < response.length; i++)
                 { this.currTask = new TasksObj(response[i].id, response[i].userId, response[i].title, response[i].completed);
@@ -208,7 +175,8 @@ updateUser(changedUserObj:UsersObj):boolean
                   }
                 });
        }
-    
+       ngOnDestroy() {
+      }
 }
 
 

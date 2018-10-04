@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import {GetDataService} from '../get-data.service';
+import { Component,  OnDestroy } from '@angular/core';
+import {GetDataService} from '../servicefolder/get-data.service';
 import { Router, ActivatedRoute} from '@angular/router';
-import {UsersObj} from '../users-obj';  
+import {UsersObj} from '../types/users-obj';  
 import { Validators } from '@angular/forms';
+import {untilComponentDestroyed} from "@w11k/ngx-componentdestroyed";
 
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
   styleUrls: ['./add-user.component.css']
 })
-export class AddUserComponent implements OnInit {
+export class AddUserComponent implements  OnDestroy  {
 
   UserName:string="";
   userCity:string="";
@@ -40,8 +41,6 @@ export class AddUserComponent implements OnInit {
 
    }
 
-  
-  ngOnInit() {
-  }
-
+   ngOnDestroy() {
+   }
 }

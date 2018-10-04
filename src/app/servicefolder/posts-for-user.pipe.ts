@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {PresentPosts} from './present-posts';
+import {PresentPosts} from '../types/present-posts';
 
 @Pipe({
   name: 'postsForUser'

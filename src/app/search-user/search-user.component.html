@@ -1,4 +1,4 @@
-<form #searchForm="ngForm" >
+<div    >
 
 <p > Phrase: <input type="text" name="Phrase" #phrase required (keyup)="getUsers(phrase.value)">  </p>
 <span> <input type="button" #return (click)="prev()" value="Previous Page"> </span>
@@ -9,4 +9,4 @@
   <li>{{user.UserObjEmail}}</li>
 
 </ul>
-</form>
+</div>

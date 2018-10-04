@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {UsersObj} from '../users-obj';  
-import {TasksObj} from '../tasks-obj';
-import {PostsObj} from '../posts-obj';
+import { Component, OnInit,OnDestroy } from '@angular/core';
+import {UsersObj} from '../types/users-obj';  
+import {TasksObj} from '../types/tasks-obj';
+import {PostsObj} from '../types/posts-obj';
 import { Router, ActivatedRoute} from '@angular/router';
-import {GetDataService} from '../get-data.service';
+import {GetDataService} from '../servicefolder/get-data.service';
 import {MatButtonModule, MatCheckboxModule, MatDialog} from '@angular/material';
  
 
@@ -13,7 +13,7 @@ import {MatButtonModule, MatCheckboxModule, MatDialog} from '@angular/material';
   templateUrl: './user-data.component.html',
   styleUrls: ['./user-data.component.css']
 })
-export class UserDataComponent implements OnInit {
+export class UserDataComponent implements OnInit ,OnDestroy{
 
   userId:number=0;
   singleUser:UsersObj;
@@ -28,20 +28,17 @@ export class UserDataComponent implements OnInit {
     private actRoute : ActivatedRoute, public dialog: MatDialog ) { }
 
   prev(){
-  //   this.lastPage.navigate(['sec-menu/:users']);
-   this.lastPage.navigate(['/users/show-users']);
+    this.lastPage.navigate(['/users/show-users']);
  
   }
 
   ngOnInit() {
-     // recieves user's id from the parent component and retrieve the relevant data for this user
-    // the data is retrieved from the arrays in service get-data.service 
+ 
     this.actRoute.params.subscribe( data =>
       { this.userId = data['id'] 
             this.singleUser  = this.userService.getSingleUser(this.userId);   
             this.postsArr  = this.userService.getPostsForUser(this.userId);  
-            // only uncompleted tasks will be presented
-            this.tasksArr  = this.userService.getTasksForUser(this.userId).filter(x=> !x.taskObjCompleted) 
+             this.tasksArr  = this.userService.getTasksForUser(this.userId).filter(x=> !x.taskObjCompleted) 
            }
         );
 
@@ -51,16 +48,13 @@ export class UserDataComponent implements OnInit {
             }
 
      }
-    // alert message before delete
-    openDialog() {
+     openDialog() {
           const dialogRef = this.dialog.open(DialogWindow);
           dialogRef.afterClosed().subscribe(result => {
             if (result==true) {this.deleteUser();}
           });
        }
-
-
-    // Send a delete command to the service
+ 
     deleteUser(){
        this.usereDeleted =  this.userService.deleteUser(this.singleUser.UserObjUserId);
             if (this.usereDeleted){
@@ -87,6 +81,7 @@ export class UserDataComponent implements OnInit {
 
       this.prev(); 
     }
+    ngOnDestroy(){}
    }
 
    

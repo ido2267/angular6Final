@@ -1,5 +1,3 @@
-
-
 import { BrowserModule }  from '@angular/platform-browser';
 import { NgModule }       from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
@@ -8,13 +6,14 @@ import { RouterModule, Routes} from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CdkTableModule} from '@angular/cdk/table';
 import {CdkTreeModule} from '@angular/cdk/tree';
+import {untilComponentDestroyed} from "@w11k/ngx-componentdestroyed";
 
 
 import { AppComponent } from './app.component';
 import { UserDataComponent ,DialogWindow } from './user-data/user-data.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
-  import { PostsForUserPipe } from './posts-for-user.pipe';
-import { TasksPipePipe } from './tasks-pipe.pipe';
+  import { PostsForUserPipe } from './servicefolder/posts-for-user.pipe';
+import { TasksPipePipe } from './servicefolder/tasks-pipe.pipe';
  import { ShowUsersComponent } from './show-users/show-users.component';
 import { SearchUserComponent } from './search-user/search-user.component';
 import { AddUserComponent} from './add-user/add-user.component';
@@ -56,7 +55,7 @@ import {
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
-  MatTreeModule,
+  MatTreeModule 
 } from '@angular/material';
 
 const appRoutes : Routes = [
@@ -117,7 +116,7 @@ const appRoutes : Routes = [
     AppComponent,
      UserDataComponent, DialogWindow,
     MainMenuComponent,
-      PostsForUserPipe,
+    PostsForUserPipe,
     TasksPipePipe,
      ShowUsersComponent,
     SearchUserComponent,
@@ -129,7 +128,8 @@ const appRoutes : Routes = [
   imports: [
     BrowserModule,  
     HttpClientModule,
-    FormsModule,
+        FormsModule,
+        
     RouterModule.forRoot(appRoutes) ,
     BrowserAnimationsModule, MatDialogModule,
     MatButtonModule, MatCheckboxModule ],

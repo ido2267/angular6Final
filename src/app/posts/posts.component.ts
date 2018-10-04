@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnDestroy } from '@angular/core';
 
- import {UsersObj} from '../users-obj';  
- import {PostsObj} from '../posts-obj';
-import {PresentPosts} from '../present-posts';
+ import {UsersObj} from '../types/users-obj';  
+ import {PostsObj} from '../types/posts-obj';
+import {PresentPosts} from '../types/present-posts';
  
-import {GetDataService} from '../get-data.service';
+import {GetDataService} from '../servicefolder/get-data.service';
 import { Router, ActivatedRoute} from '@angular/router';
-import {PostsForUserPipe} from '../posts-for-user.pipe';
+import {PostsForUserPipe} from '../servicefolder/posts-for-user.pipe';
   
    
 @Component({
@@ -14,7 +14,7 @@ import {PostsForUserPipe} from '../posts-for-user.pipe';
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.css']
 })
-export class PostsComponent implements OnInit {
+export class PostsComponent implements OnInit ,OnDestroy{
 
    
   usersArr:UsersObj[]=[];
@@ -64,5 +64,5 @@ export class PostsComponent implements OnInit {
             });
     }
 
-
+  ngOnDestroy(){}
 }

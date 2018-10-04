@@ -1,6 +1,5 @@
 
-<form >
-
+ <div class="container">
 <label>User id: </label>
 <input type="text" #pst pattern="[0-9]"    value="0" (keyup)="getUserId(pst.value)" > 
 <div class = "warning" [hidden]="userExist">There is no such user Id </div>
@@ -17,4 +16,5 @@
 </table>
 
 
-</form>
+</div>
+ 

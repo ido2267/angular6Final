@@ -1,4 +1,4 @@
-import { TasksPipePipe } from './tasks-pipe.pipe';
+import { TasksPipePipe } from './servicefolder/tasks-pipe.pipe';
 
 describe('TasksPipePipe', () => {
   it('create an instance', () => {

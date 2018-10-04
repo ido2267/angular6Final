@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {TasksObj}              from './tasks-obj'
+import {TasksObj}              from '../types/tasks-obj'
 @Pipe({
   name: 'tasksPipe'
 })

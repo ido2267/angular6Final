@@ -1,20 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import {UsersObj} from '../users-obj';  
-import {TasksObj} from '../tasks-obj';
-import {PostsObj} from '../posts-obj';
-import {PresentPosts} from '../present-posts';
+import { Component, OnInit,OnDestroy } from '@angular/core';
+import {UsersObj} from '../types/users-obj';  
+import {TasksObj} from '../types/tasks-obj';
+import {PostsObj} from '../types/posts-obj';
+import {PresentPosts} from '../types/present-posts';
  
-import {GetDataService} from '../get-data.service';
+import {GetDataService} from '../servicefolder/get-data.service';
 import { Router, ActivatedRoute} from '@angular/router';
-import {PostsForUserPipe} from '../posts-for-user.pipe';
-import {TasksPipePipe  }  from '../tasks-pipe.pipe';
+import {PostsForUserPipe} from '../servicefolder/posts-for-user.pipe';
+import {TasksPipePipe  }  from '../servicefolder/tasks-pipe.pipe';
 
 @Component({
   selector: 'app-show-users',
   templateUrl: './show-users.component.html',
   styleUrls: ['./show-users.component.css']
 })
-export class ShowUsersComponent implements OnInit {
+export class ShowUsersComponent implements OnInit ,OnDestroy{
   usersArr:UsersObj[]=[];
   flag:boolean=false;
 
@@ -23,5 +23,5 @@ export class ShowUsersComponent implements OnInit {
   ngOnInit() {
       this.usersArr = this.serviceInst.getUsersArray();
    }
-
+  ngOnDestroy(){}
 }

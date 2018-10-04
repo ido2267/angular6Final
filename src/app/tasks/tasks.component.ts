@@ -1,38 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,OnDestroy} from '@angular/core';
  
- import {TasksObj} from '../tasks-obj';
+ import {TasksObj} from '../types/tasks-obj';
  
- import {GetDataService} from '../get-data.service';
+ import {GetDataService} from '../servicefolder/get-data.service';
 import { Router, ActivatedRoute} from '@angular/router';
- import {TasksPipePipe  }  from '../tasks-pipe.pipe';
+ import {TasksPipePipe  }  from '../servicefolder/tasks-pipe.pipe';
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.css']
 })
-export class TasksComponent implements OnInit {
-
-     
+export class TasksComponent implements OnInit, OnDestroy {
+    
    tasksArr:TasksObj[]=[];
- 
-//menuItem:string="";
- 
+   
   tasksStatus:string="all";
  
   constructor(private serviceInst:GetDataService,  private menuRoute : Router, private menuAr : ActivatedRoute) { }
-  prev(){ // return to prevoius page 
+  prev(){ 
      this.menuRoute.navigate(['/users/show-users']);
 
  }
 
-
   ngOnInit() {    
  
-    // this.menuAr.params.subscribe( data => this.menuItem = data['menu'] );
-    this.tasksArr = this.serviceInst.getTasksArray();
+     this.tasksArr = this.serviceInst.getTasksArray();
 
     
    }
-
+  ngOnDestroy(){}
 
 }

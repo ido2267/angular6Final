@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {GetDataService} from '../get-data.service';
+import { Component, OnInit,OnDestroy } from '@angular/core';
+import {GetDataService} from '../servicefolder/get-data.service';
 import { Router, ActivatedRoute} from '@angular/router';
 
 
@@ -8,7 +8,7 @@ import { Router, ActivatedRoute} from '@angular/router';
   templateUrl: './main-menu.component.html',
   styleUrls: ['./main-menu.component.css']
 })
-export class MainMenuComponent implements OnInit {
+export class MainMenuComponent implements OnInit ,OnDestroy {
  
   constructor(private menuRoute : Router,  private serviceInst:GetDataService) { }
  
@@ -23,5 +23,7 @@ export class MainMenuComponent implements OnInit {
     this.menuRoute.navigate(['users']);
 
     }
-
+  ngOnDestroy(){
+    
+  }
 }

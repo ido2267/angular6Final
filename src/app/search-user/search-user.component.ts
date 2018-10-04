@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {UsersObj} from '../users-obj';  
-import {GetDataService} from '../get-data.service';
+import { Component, OnDestroy } from '@angular/core';
+import {UsersObj} from '../types/users-obj';  
+import {GetDataService} from '../servicefolder/get-data.service';
 import { Router, ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -8,7 +8,7 @@ import { Router, ActivatedRoute} from '@angular/router';
   templateUrl: './search-user.component.html',
   styleUrls: ['./search-user.component.css']
 })
-export class SearchUserComponent implements OnInit {
+export class SearchUserComponent  implements OnDestroy{
  
   public usersList:UsersObj[]=[];
    
@@ -44,8 +44,6 @@ export class SearchUserComponent implements OnInit {
          }
    
     }
-
-  ngOnInit() {
-  }
+ngOnDestroy(){}
 
 }
