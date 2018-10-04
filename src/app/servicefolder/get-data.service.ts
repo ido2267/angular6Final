@@ -54,8 +54,7 @@ getSingleUser (userId:number):UsersObj{
 }
  
 getPostsForUser (userId:number):PostsObj[]{
-   
-
+ 
    return this.postsArray.filter(x=> x.postObjUserId == userId);
 
 }
@@ -63,15 +62,12 @@ getPostsForUser (userId:number):PostsObj[]{
 
  getTasksForUser(userId:number):TasksObj[]{
    
-
      return  this.tasksArray.filter(x=> x.taskObjUserId == userId);
 }
  
     deleteUser(userId:number):boolean
     {
-       
-
-      this.index = this.usersArray.map(x=> x.UserObjUserId).indexOf(userId) 
+       this.index = this.usersArray.map(x=> x.UserObjUserId).indexOf(userId) 
       if (this.index >= 0 )
       {
         this.usersArray.splice(this.index,1);
