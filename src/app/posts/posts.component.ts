@@ -1,7 +1,6 @@
 import { Component, OnInit,OnDestroy } from '@angular/core';
-
- import {UsersObj} from '../types/users-obj';  
- import {PostsObj} from '../types/posts-obj';
+import {UsersObj} from '../types/users-obj';  
+import {PostsObj} from '../types/posts-obj';
 import {PresentPosts} from '../types/present-posts';
  
 import {GetDataService} from '../servicefolder/get-data.service';
@@ -18,10 +17,8 @@ export class PostsComponent implements OnInit ,OnDestroy{
 
    
   usersArr:UsersObj[]=[];
-   postArr:PostsObj[]=[];
+  postArr:PostsObj[]=[];
   postsForShow:PresentPosts[]=[];
- 
-//   menuItem:string="";
   inUserId:number=0;
   inUserName:string="";
   userExist:boolean=false;

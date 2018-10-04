@@ -1,5 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import {TasksObj}              from '../types/tasks-obj'
+const all:string="all";
+const completed:string="Completed";
+const uncompleted:string="Uncompleted";
 @Pipe({
   name: 'tasksPipe'
 })
@@ -10,11 +13,11 @@ export class TasksPipePipe implements PipeTransform {
   
    switch(str)
     {
-      case "all":
+      case all:
       return tasksList;
-       case "Completed":
+       case completed :
       return tasksList.filter(x=> x.taskObjCompleted == true);
-       case "Uncompleted":
+       case uncompleted:
       return tasksList.filter(x=> x.taskObjCompleted == false);
        default:
       return tasksList;
